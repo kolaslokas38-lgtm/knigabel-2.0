@@ -1,0 +1,47 @@
+{
+  "short_name": "КнігаБел",
+  "name": "КнігаБел - Цифровая библиотека",
+  "description": "Современная цифровая библиотека с более чем 50 книгами различных жанров",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6366F1",
+  "background_color": "#F8FAFC",
+  "orientation": "portrait-primary",
+  "categories": ["books", "education", "entertainment"],
+  "lang": "ru",
+  "dir": "ltr",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Каталог книг",
+      "short_name": "Каталог",
+      "description": "Просмотреть все доступные книги",
+      "url": "/catalog",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Мой профиль",
+      "short_name": "Профиль",
+      "description": "Управление профилем и настройками",
+      "url": "/profile",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ]
+}

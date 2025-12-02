@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КнігаБел - Библиотечный каталог</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-main">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo-icon">📚</div>
+                        <div class="logo-text">
+                            <h1>КнігаБел</h1>
+                            <p>Ваша цифровая библиотека</p>
+                        </div>
+                    </div>
+                    <div class="header-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">📖</div>
+                            <div class="feature-text">
+                                <span class="feature-number" id="totalBooks">0</span>
+                                <span class="feature-label">книг</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">⭐</div>
+                            <div class="feature-text">
+                                <span class="feature-number" id="availableBooks">0</span>
+                                <span class="feature-label">доступно</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                        <div class="feature-icon">🏷️</div>
+                        <div class="feature-text">
+                            <span class="feature-number" id="totalGenres">16</span>
+                            <span class="feature-label">жанров</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="theme-toggle">
+                        <button onclick="toggleTheme()" class="theme-btn" id="themeToggle">
+                            <span id="themeIcon">🌙</span>
+                            <span class="theme-text">Тема</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-stats" id="stats">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalBooksCard">0</div>
+                            <div class="stat-label">Всего книг</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="availableBooksCard">0</div>
+                            <div class="stat-label">Доступно</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📖</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="borrowedBooks">0</div>
+                            <div class="stat-label">Выдано</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏷️</div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalGenresCard">16</div>
+                            <div class="stat-label">Жанров</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Откройте мир литературы</h2>
+                    <p class="hero-subtitle">Более 50 книг различных жанров ждут вас в нашей цифровой библиотеке</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number" id="heroTotalBooks">0</div>
+                            <div class="hero-stat-label">Книг в каталоге</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number" id="heroGenres">16</div>
+                            <div class="hero-stat-label">Жанров</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number" id="heroAvailable">0</div>
+                            <div class="hero-stat-label">Доступно сейчас</div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button onclick="showSection('catalog')" class="hero-btn primary">
+                            <span class="btn-icon">📚</span>
+                            <span class="btn-text">Просмотреть каталог</span>
+                        </button>
+                        <button onclick="showSection('authors')" class="hero-btn secondary">
+                            <span class="btn-icon">👥</span>
+                            <span class="btn-text">Знаменитые авторы</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="genre-showcase">
+                        <div class="genre-item fantasy">
+                            <div class="genre-icon">🧙‍♂️</div>
+                            <div class="genre-name">Фэнтези</div>
+                        </div>
+                        <div class="genre-item sci-fi">
+                            <div class="genre-icon">🚀</div>
+                            <div class="genre-name">Фантастика</div>
+                        </div>
+                        <div class="genre-item romance">
+                            <div class="genre-icon">💕</div>
+                            <div class="genre-name">Романтика</div>
+                        </div>
+                        <div class="genre-item detective">
+                            <div class="genre-icon">🕵️‍♂️</div>
+                            <div class="genre-name">Детектив</div>
+                        </div>
+                        <div class="genre-item classic">
+                            <div class="genre-icon">📚</div>
+                            <div class="genre-name">Классика</div>
+                        </div>
+                        <div class="genre-item thriller">
+                            <div class="genre-icon">🔪</div>
+                            <div class="genre-name">Триллер</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs -->
+        <section class="navigation-section">
+            <div class="nav-tabs">
+                <button class="nav-btn active" onclick="showSection('catalog')">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">Каталог</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('authors')">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Авторы</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('education')">
+                    <span class="nav-icon">🎓</span>
+                    <span class="nav-text">Обучение</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('games')">
+                    <span class="nav-icon">🎮</span>
+                    <span class="nav-text">Игры</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('events')">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">События</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('redbook')">
+                    <span class="nav-icon">🐾</span>
+                    <span class="nav-text">Красная Книга</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('reviews')">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Отзывы</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('achievements')">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Достижения</span>
+                </button>
+                <button class="nav-btn" onclick="showSection('profile')">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Мой профиль</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section" id="searchSection">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Поиск по названию, автору или жанру..."
+                    class="search-input"
+                >
+                <button onclick="searchBooks()" class="search-btn">🔍</button>
+            </div>
+            
+            <div class="filter-container">
+                <select id="genreFilter" class="genre-filter" onchange="filterByGenre()">
+                    <option value="">Загрузка жанров...</option>
+                </select>
+            </div>
+        </section>
+
+
+
+        <!-- Catalog Section -->
+        <section class="content-section active" id="catalogSection">
+            <div class="section-header">
+                <h2 id="sectionTitle">Каталог книг</h2>
+                <span class="books-count" id="booksCount">0 книг</span>
+            </div>
+
+            <!-- Книга дня -->
+            <section class="book-of-day-section">
+                <h2 class="book-of-day-title">⭐ Книга дня</h2>
+                <div class="book-of-day-container" id="bookOfDayContainer">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Загрузка книги дня...</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Книги недели -->
+            <section class="weekly-books-section">
+                <h2 class="weekly-books-title">📚 Книги недели</h2>
+                <div class="weekly-books-container" id="weeklyBooksContainer">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Загрузка книг недели...</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Каталог всех книг -->
+            <section class="all-books-section">
+                <h2 class="all-books-title">📚 Каталог всех книг</h2>
+                <div class="books-container" id="booksContainer">
+                    <!-- Books will be loaded here -->
+                </div>
+            </section>
+            
+            <div class="loading hidden" id="loading">
+                <div class="spinner"></div>
+                <p>Загрузка каталога...</p>
+            </div>
+            
+            <div class="empty-state hidden" id="emptyState">
+                <div class="empty-icon">📚</div>
+                <h3>Книги не найдены</h3>
+                <p>Попробуйте изменить поисковый запрос или фильтр</p>
+                <button onclick="clearFilters()" class="clear-btn">Сбросить фильтры</button>
+            </div>
+        </section>
+
+        <!-- Authors Section -->
+        <section class="content-section" id="authorsSection">
+            <div class="section-header">
+                <h2>👥 Знаменитые авторы</h2>
+                <span class="authors-count" id="authorsCount">3 автора</span>
+            </div>
+
+            <div class="authors-grid" id="authorsGrid">
+                <!-- Authors will be loaded here -->
+            </div>
+
+            <!-- Daily Quote -->
+            <div class="daily-quote-section">
+                <h3>💭 Цитата дня</h3>
+                <div class="quote-card" id="dailyQuote">
+                    <!-- Daily quote will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section class="content-section" id="gamesSection">
+            <div class="section-header">
+                <h2>🎮 Игровые механики</h2>
+                <span class="games-count" id="gamesCount">Уровень 1</span>
+            </div>
+
+            <!-- Player Stats -->
+            <div class="games-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="playerLevel">1</div>
+                        <div class="stat-label">Уровень</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💎</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="playerCoins">0</div>
+                        <div class="stat-label">Кристаллы</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="streakDays">0</div>
+                        <div class="stat-label">Дней подряд</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="achievementsCount">0</div>
+                        <div class="stat-label">Достижений</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Quests -->
+            <div class="games-category">
+                <h3>📅 Ежедневные задания</h3>
+                <div class="quests-grid" id="dailyQuestsGrid">
+                    <!-- Daily quests will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Weekly Challenges -->
+            <div class="games-category">
+                <h3>📊 Недельные челленджи</h3>
+                <div class="challenges-grid" id="weeklyChallengesGrid">
+                    <!-- Weekly challenges will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Monthly Challenges -->
+            <div class="games-category">
+                <h3>📅 Месячные челленджи</h3>
+                <div class="challenges-grid" id="monthlyChallengesGrid">
+                    <!-- Monthly challenges will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Special Events -->
+            <div class="games-category">
+                <h3>🎪 Специальные события</h3>
+                <div class="events-grid" id="specialEventsGrid">
+                    <!-- Special events will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Rewards Shop -->
+            <div class="games-category">
+                <h3>🛍️ Магазин наград</h3>
+                <div class="shop-grid" id="rewardsShopGrid">
+                    <!-- Shop items will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="content-section" id="eventsSection">
+            <div class="section-header">
+                <h2>📅 Литературные события</h2>
+                <span class="events-count" id="eventsCount">0 событий</span>
+            </div>
+
+            <div class="events-container" id="eventsContainer">
+                <!-- Events will be loaded here -->
+            </div>
+
+            <div class="loading hidden" id="eventsLoading">
+                <div class="spinner"></div>
+                <p>Загрузка событий...</p>
+            </div>
+
+            <div class="empty-state hidden" id="eventsEmptyState">
+                <div class="empty-icon">📅</div>
+                <h3>Событий пока нет</h3>
+                <p>Следите за обновлениями!</p>
+            </div>
+        </section>
+
+        <!-- Red Book Section -->
+        <section class="content-section" id="redbookSection">
+            <div class="section-header">
+                <h2>🐾 Красная Книга Беларуси</h2>
+                <span class="books-count" id="animalsCount">0 животных</span>
+            </div>
+            
+            <div class="animals-container" id="animalsContainer">
+                <!-- Animals will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section class="content-section" id="profileSection">
+            <div class="profile-header">
+                <div class="user-avatar" id="userAvatar">
+                    <div class="avatar-placeholder">👤</div>
+                </div>
+                <div class="user-info">
+                    <h2 id="userName">Пользователь</h2>
+                    <p class="user-registration" id="userRegistration">Зарегистрирован: ...</p>
+                    <p id="userRole">Роль: Активный пользователь</p>
+                    <div id="specialRoleBadge" class="special-role-badge hidden"></div>
+                    <p id="userTitle" class="user-title" style="display: none;"></p>
+                    <div class="user-stats">
+                        <span class="user-stat">📚 <span id="userTotalBooks">0</span> книг</span>
+                        <span class="user-stat">⭐ <span id="userFavorites">0</span> избранных</span>
+                        <span class="user-stat">💬 <span id="userReviewsCount">0</span> отзывов</span>
+                        <span class="user-stat">📖 <span id="totalPagesRead">0</span> стр.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level and XP -->
+            <div class="level-section" id="levelSection">
+                <div class="level-display">
+                    <div class="level-info">
+                        <span class="level-label">Уровень пользователя:</span>
+                        <span class="level-number" id="userLevel">1</span>
+                    </div>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="expFillSection"></div>
+                        <div class="xp-text" id="expTextSection">0/100 XP</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat-card profile-stat">
+                    <div class="stat-icon">📖</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="activeBorrows">0</div>
+                        <div class="stat-label">Активные книги</div>
+                    </div>
+                </div>
+                <div class="stat-card profile-stat">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalRead">0</div>
+                        <div class="stat-label">Прочитано</div>
+                    </div>
+                </div>
+                <div class="stat-card profile-stat">
+                    <div class="stat-icon">⏰</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="readingTime">0</div>
+                        <div class="stat-label">Дней с нами</div>
+                    </div>
+                </div>
+                <div class="stat-card profile-stat">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="userReviewsWritten">0</div>
+                        <div class="stat-label">Написано отзывов</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Borrows -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>📚 Мои активные книги</h3>
+                    <span class="section-badge" id="activeBooksCount">0</span>
+                </div>
+                <div class="borrowed-books-list" id="activeBooksList">
+                    <!-- Active books will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Borrowing History -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>🕐 История бронирований</h3>
+                    <span class="section-badge" id="historyCount">0</span>
+                </div>
+                <div class="history-list" id="historyList">
+                    <!-- History will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Favorites -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>⭐ Избранные книги</h3>
+                    <span class="section-badge" id="favoritesCount">0</span>
+                </div>
+                <div class="favorites-list" id="favoritesList">
+                    <!-- Favorites will be loaded here -->
+                </div>
+            </div>
+
+
+            <!-- Titles -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>👑 Титулы</h3>
+                    <span class="section-badge" id="titlesCount">0</span>
+                </div>
+                <div class="titles-grid" id="titlesGrid">
+                    <!-- Titles will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Inventory -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>🎒 Инвентарь</h3>
+                    <span class="section-badge" id="inventoryCount">0</span>
+                </div>
+                <div class="inventory-grid" id="inventoryGrid">
+                    <!-- Inventory items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- My Reviews -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>💬 Мои отзывы</h3>
+                    <span class="section-badge" id="myReviewsCount">0</span>
+                </div>
+                <div class="my-reviews-list" id="myReviewsList">
+                    <!-- My reviews will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Booked Events -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>🎫 Мои события</h3>
+                    <span class="section-badge" id="bookedEventsCount">0</span>
+                </div>
+                <div class="booked-events-list" id="bookedEventsList">
+                    <!-- Booked events will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Data Management -->
+            <div class="profile-section-card">
+                <div class="section-title">
+                    <h3>⚙️ Управление данными</h3>
+                </div>
+                <div class="data-management">
+                    <button class="clear-data-btn" onclick="openAdminModal()">
+                        🔑 Админ панель
+                    </button>
+                    <button class="clear-data-btn" onclick="clearAllData()">
+                        🗑️ Сбросить все данные
+                    </button>
+                    <button class="clear-data-btn" onclick="clearAllReviews()" style="background: #ff6b6b; margin-top: 10px;">
+                        🗑️ Удалить все отзывы
+                    </button>
+                    <p class="data-info">Только для тестирования. Отзывы синхронизируются между вкладками одного браузера.</p>
+                    <div id="syncStatus" class="sync-status" style="margin-top: 10px; padding: 8px; background: var(--bg-light); border-radius: 8px; font-size: 0.8em; color: var(--text-light);">
+                        📡 Синхронизация: <span id="syncIndicator">активна</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="content-section" id="educationSection">
+            <div class="section-header">
+                <h2>🎓 Обучение русской литературе</h2>
+                <span class="lessons-count" id="lessonsCount">0 уроков</span>
+            </div>
+
+            <!-- Education Categories -->
+            <div class="education-categories">
+                <div class="category-tabs">
+                    <button class="category-tab active" onclick="showEducationCategory('lessons')">
+                        <span class="tab-icon">📖</span>
+                        <span class="tab-text">Уроки</span>
+                    </button>
+                    <button class="category-tab" onclick="showEducationCategory('authors')">
+                        <span class="tab-icon">👥</span>
+                        <span class="tab-text">Авторы</span>
+                    </button>
+                    <button class="category-tab" onclick="showEducationCategory('quiz')">
+                        <span class="tab-icon">❓</span>
+                        <span class="tab-text">Викторины</span>
+                    </button>
+                    <button class="category-tab" onclick="showEducationCategory('progress')">
+                        <span class="tab-icon">📊</span>
+                        <span class="tab-text">Прогресс</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lessons Content -->
+            <div class="education-content active" id="lessonsContent">
+                <div class="lessons-grid" id="lessonsGrid">
+                    <!-- Уроки будут загружены здесь -->
+                </div>
+            </div>
+
+            <!-- Authors Content -->
+            <div class="education-content" id="authorsContent">
+                <div class="authors-education-grid" id="authorsEducationGrid">
+                    <!-- Авторы будут загружены здесь -->
+                </div>
+            </div>
+
+            <!-- Quiz Content -->
+            <div class="education-content" id="quizContent">
+                <div class="quiz-section">
+                    <h3>🧠 Проверь свои знания</h3>
+                    <div class="quiz-grid" id="quizGrid">
+                        <!-- Викторины будут загружены здесь -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Content -->
+            <div class="education-content" id="progressContent">
+                <div class="progress-section">
+                    <h3>📈 Ваш прогресс обучения</h3>
+                    <div class="progress-stats">
+                        <div class="progress-stat-card">
+                            <div class="progress-icon">📖</div>
+                            <div class="progress-info">
+                                <div class="progress-number" id="completedLessons">0</div>
+                                <div class="progress-label">Пройденных уроков</div>
+                            </div>
+                        </div>
+                        <div class="progress-stat-card">
+                            <div class="progress-icon">❓</div>
+                            <div class="progress-info">
+                                <div class="progress-number" id="completedQuizzes">0</div>
+                                <div class="progress-label">Пройденных викторин</div>
+                            </div>
+                        </div>
+                        <div class="progress-stat-card">
+                            <div class="progress-icon">⭐</div>
+                            <div class="progress-info">
+                                <div class="progress-number" id="averageScore">0%</div>
+                                <div class="progress-label">Средний балл</div>
+                            </div>
+                        </div>
+                        <div class="progress-stat-card">
+                            <div class="progress-icon">🏆</div>
+                            <div class="progress-info">
+                                <div class="progress-number" id="achievementsEarned">0</div>
+                                <div class="progress-label">Достижений</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-details" id="progressDetails">
+                        <!-- Детали прогресса будут загружены здесь -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="content-section" id="reviewsSection">
+            <div class="section-header">
+                <h2>💬 Отзывы читателей</h2>
+                <span class="reviews-count" id="allReviewsCount">0 отзывов</span>
+            </div>
+
+            <div class="reviews-filter">
+                <select id="reviewsSort" class="reviews-sort" onchange="sortReviews()">
+                    <option value="newest">Сначала новые</option>
+                    <option value="oldest">Сначала старые</option>
+                    <option value="rating-high">Высокий рейтинг</option>
+                    <option value="rating-low">Низкий рейтинг</option>
+                    <option value="most-liked">Больше всего лайков</option>
+                </select>
+                <select id="reviewsBookFilter" class="reviews-book-filter" onchange="filterReviewsByBook()">
+                    <option value="">Все книги</option>
+                    <!-- Книги будут загружены динамически -->
+                </select>
+            </div>
+
+            <div class="all-reviews-container" id="allReviewsContainer">
+                <!-- Все отзывы будут загружены здесь -->
+            </div>
+
+            <div class="loading hidden" id="reviewsLoading">
+                <div class="spinner"></div>
+                <p>Загрузка отзывов...</p>
+            </div>
+
+            <div class="empty-state hidden" id="reviewsEmptyState">
+                <div class="empty-icon">💬</div>
+                <h3>Отзывов пока нет</h3>
+                <p>Будьте первым, кто поделится мнением о прочитанных книгах!</p>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="content-section" id="achievementsSection">
+            <div class="section-header">
+                <h2>🏆 Достижения</h2>
+                <span class="achievements-count" id="totalAchievementsCount">0/0</span>
+            </div>
+
+            <!-- Achievement Stats -->
+            <div class="achievement-stats">
+                <div class="achievement-stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="unlockedAchievements">0</div>
+                        <div class="stat-label">Разблокировано</div>
+                    </div>
+                </div>
+                <div class="achievement-stat-card">
+                    <div class="stat-icon">💎</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalCoinsEarned">0</div>
+                        <div class="stat-label">Кристаллов заработано</div>
+                    </div>
+                </div>
+                <div class="achievement-stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalExpEarned">0</div>
+                        <div class="stat-label">Опыта заработано</div>
+                    </div>
+                </div>
+                <div class="achievement-stat-card">
+                    <div class="stat-icon">👑</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="titlesEarned">0</div>
+                        <div class="stat-label">Титулов получено</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement Categories -->
+            <div class="achievement-categories">
+                <div class="category-tabs">
+                    <button class="category-tab active" onclick="showAchievementCategory('all')">
+                        <span class="tab-icon">🏆</span>
+                        <span class="tab-text">Все</span>
+                    </button>
+                    <button class="category-tab" onclick="showAchievementCategory('reading')">
+                        <span class="tab-icon">📖</span>
+                        <span class="tab-text">Чтение</span>
+                    </button>
+                    <button class="category-tab" onclick="showAchievementCategory('education')">
+                        <span class="tab-icon">🎓</span>
+                        <span class="tab-text">Обучение</span>
+                    </button>
+                    <button class="category-tab" onclick="showAchievementCategory('social')">
+                        <span class="tab-icon">👥</span>
+                        <span class="tab-text">Социальное</span>
+                    </button>
+                    <button class="category-tab" onclick="showAchievementCategory('special')">
+                        <span class="tab-icon">⭐</span>
+                        <span class="tab-text">Особые</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Achievements Grid -->
+            <div class="achievements-showcase" id="achievementsShowcase">
+                <!-- Achievements will be loaded here -->
+            </div>
+
+            <div class="loading hidden" id="achievementsLoading">
+                <div class="spinner"></div>
+                <p>Загрузка достижений...</p>
+            </div>
+
+            <div class="empty-state hidden" id="achievementsEmptyState">
+                <div class="empty-icon">🏆</div>
+                <h3>Достижения временно недоступны</h3>
+                <p>Попробуйте обновить страницу</p>
+            </div>
+        </section>
+
+        <!-- Admin Modal -->
+        <div class="modal hidden" id="adminModal">
+            <div class="modal-content admin-modal">
+                <div class="modal-header">
+                    <h3>⚙️ Админ панель</h3>
+                    <button onclick="closeAdminModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="admin-login" id="adminLogin">
+                        <div class="login-form">
+                            <h3>Вход в админ панель</h3>
+                            <input type="text" id="adminUsername" placeholder="Логин" class="admin-input">
+                            <input type="password" id="adminPassword" placeholder="Пароль" class="admin-input">
+                            <button onclick="adminLogin()" class="admin-btn">Войти</button>
+                            <p id="adminError" class="error-message" style="display: none;"></p>
+                        </div>
+                    </div>
+
+                    <div class="admin-panel hidden" id="adminPanel">
+                        <div class="admin-tabs">
+                            <button class="admin-tab active" onclick="showAdminTab('books')">📚 Управление книгами</button>
+                            <button class="admin-tab" onclick="showAdminTab('users')">👥 Управление пользователями</button>
+                        </div>
+
+                        <div class="admin-content" id="adminBooksTab">
+                            <h3>Управление книгами</h3>
+                            <button onclick="showAddBookForm()" class="admin-btn">➕ Добавить книгу</button>
+                            <div class="books-admin-list" id="booksAdminList">
+                                <!-- Книги будут загружены здесь -->
+                            </div>
+                        </div>
+
+                        <div class="admin-content hidden" id="adminUsersTab">
+                            <h3>Управление пользователями</h3>
+                            <div class="user-management">
+                                <div class="user-selector">
+                                    <h4>Выберите пользователя:</h4>
+                                    <select id="userSelector" onchange="selectUserForAdmin()">
+                                        <option value="current">Текущий пользователь</option>
+                                        <option value="demo">Демо пользователь</option>
+                                    </select>
+                                </div>
+                                <div class="user-admin-controls" id="userAdminControls">
+                                    <!-- Элементы управления будут загружены здесь -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <section class="content-section" id="settingsSection">
+            <div class="section-header">
+                <h2>⚙️ Настройки профиля</h2>
+            </div>
+
+            <div class="settings-container">
+                <div class="settings-group">
+                    <h3>👤 Информация профиля</h3>
+                    <div class="setting-item">
+                        <label>Имя пользователя:</label>
+                        <input type="text" id="settingsName" class="settings-input" placeholder="Введите имя">
+                    </div>
+                    <div class="setting-item">
+                        <label>Аватар:</label>
+                        <div class="avatar-options">
+                            <div class="avatar-option" onclick="selectAvatar('👤')">👤</div>
+                            <div class="avatar-option" onclick="selectAvatar('📚')">📚</div>
+                            <div class="avatar-option" onclick="selectAvatar('🎓')">🎓</div>
+                            <div class="avatar-option" onclick="selectAvatar('✍️')">✍️</div>
+                            <div class="avatar-option" onclick="selectAvatar('🧙')">🧙</div>
+                            <div class="avatar-option" onclick="selectAvatar('👑')">👑</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3>🎨 Внешний вид</h3>
+                    <div class="setting-item">
+                        <label>Фон профиля:</label>
+                        <div class="background-options">
+                            <div class="bg-option" onclick="selectBackground('default')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">По умолчанию</div>
+                            <div class="bg-option" onclick="selectBackground('dark')" style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);">Тёмный</div>
+                            <div class="bg-option" onclick="selectBackground('blue')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Синий</div>
+                            <div class="bg-option" onclick="selectBackground('purple')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Фиолетовый</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-actions">
+                    <button class="save-settings-btn" onclick="saveSettings()">💾 Сохранить настройки</button>
+                    <button class="reset-settings-btn" onclick="resetSettings()">🔄 Сбросить</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Book Modal -->
+        <div class="modal hidden" id="bookModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Детали книги</h3>
+                    <button onclick="closeModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Modal content will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Review Modal -->
+        <div class="modal hidden" id="reviewModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>✍️ Написать отзыв</h3>
+                    <button onclick="closeReviewModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="review-form">
+                        <div class="form-group">
+                            <label>Ваша оценка:</label>
+                            <div class="rating-selector">
+                                <span class="rating-stars">
+                                    <span class="star" onclick="setRating(1)">☆</span>
+                                    <span class="star" onclick="setRating(2)">☆</span>
+                                    <span class="star" onclick="setRating(3)">☆</span>
+                                    <span class="star" onclick="setRating(4)">☆</span>
+                                    <span class="star" onclick="setRating(5)">☆</span>
+                                </span>
+                                <span class="rating-text" id="ratingText">Выберите оценку</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Ваш отзыв:</label>
+                            <textarea 
+                                id="reviewComment" 
+                                placeholder="Поделитесь вашими впечатлениями о книге..."
+                                rows="4"
+                                maxlength="500"
+                                oninput="updateCharCount()"
+                            ></textarea>
+                            <div class="char-count"><span id="charCount">0</span>/500</div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" onclick="closeReviewModal()">Отмена</button>
+                            <button type="button" class="submit-btn" onclick="submitReview()" disabled>Опубликовать отзыв</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Author Modal -->
+        <div class="modal hidden" id="authorModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="authorModalTitle">Биография автора</h3>
+                    <button onclick="closeAuthorModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body" id="authorModalBody">
+                    <!-- Author details will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Modal -->
+        <div class="modal hidden" id="eventModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="eventModalTitle">Детали события</h3>
+                    <button onclick="closeEventModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body" id="eventModalBody">
+                    <!-- Event details will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Reading Modal -->
+        <div class="modal hidden" id="readingModal">
+            <div class="modal-content reading-modal">
+                <div class="modal-header">
+                    <h3 id="readingTitle">Чтение книги</h3>
+                    <button onclick="closeReadingModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="reading-container">
+                        <div class="reading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="readingProgress"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span id="currentPage">1</span> / <span id="totalPages">100</span> стр.
+                            </div>
+                        </div>
+                        <div class="reading-content" id="readingContent">
+                            <!-- Текст книги будет загружен здесь -->
+                        </div>
+                        <div class="reading-controls">
+                            <button onclick="previousPage()" class="page-btn" id="prevBtn">← Предыдущая</button>
+                            <div class="page-input">
+                                <input type="number" id="pageInput" min="1" onchange="goToPage(this.value)">
+                            </div>
+                            <button onclick="nextPage()" class="page-btn" id="nextBtn">Следующая →</button>
+                        </div>
+                        <div class="reading-actions">
+                            <button onclick="markPageAsRead()" class="read-btn">Отметить страницу как прочитанную</button>
+                            <button onclick="finishBook()" class="finish-btn">Завершить книгу</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Book Modal -->
+        <div class="modal hidden" id="editBookModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>✏️ Редактировать книгу</h3>
+                    <button onclick="closeEditBookModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="add-book-form">
+                        <input type="hidden" id="editBookId">
+                        <div class="form-group">
+                            <label>Название:</label>
+                            <input type="text" id="editBookTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Автор:</label>
+                            <input type="text" id="editBookAuthor" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Жанр:</label>
+                            <input type="text" id="editBookGenre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Год:</label>
+                            <input type="number" id="editBookYear" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Описание:</label>
+                            <textarea id="editBookDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Страницы:</label>
+                            <input type="number" id="editBookPages" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Рейтинг:</label>
+                            <input type="number" id="editBookRating" step="0.1" min="0" max="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Иконка (emoji):</label>
+                            <input type="text" id="editBookIcon" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" onclick="closeEditBookModal()">Отмена</button>
+                            <button type="button" class="submit-btn" onclick="updateBook()">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Book Modal -->
+        <div class="modal hidden" id="addBookModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>➕ Добавить книгу</h3>
+                    <button onclick="closeAddBookModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="add-book-form">
+                        <div class="form-group">
+                            <label>Название:</label>
+                            <input type="text" id="bookTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Автор:</label>
+                            <input type="text" id="bookAuthor" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Жанр:</label>
+                            <input type="text" id="bookGenre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Год:</label>
+                            <input type="number" id="bookYear" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Описание:</label>
+                            <textarea id="bookDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Страницы:</label>
+                            <input type="number" id="bookPages" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Рейтинг:</label>
+                            <input type="number" id="bookRating" step="0.1" min="0" max="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Иконка (emoji):</label>
+                            <input type="text" id="bookIcon" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" onclick="closeAddBookModal()">Отмена</button>
+                            <button type="button" class="submit-btn" onclick="addBook()">Добавить книгу</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Modal -->
+        <div class="modal hidden" id="bookingModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🎫 Бронирование билета</h3>
+                    <button onclick="closeBookingModal()" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="booking-form">
+                        <div class="form-group">
+                            <label>Количество билетов:</label>
+                            <div class="ticket-selector">
+                                <button type="button" onclick="changeTicketCount(-1)" class="ticket-btn">-</button>
+                                <span id="ticketCount">1</span>
+                                <button type="button" onclick="changeTicketCount(1)" class="ticket-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="booking-summary">
+                            <p>Цена за билет: <span id="ticketPrice">0</span> BYN</p>
+                            <p>Итого: <span id="totalPrice">0</span> BYN</p>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" onclick="closeBookingModal()">Отмена</button>
+                            <button type="button" class="book-btn" onclick="confirmBooking()" id="bookBtn">Забронировать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем файлы в правильном порядке -->
+    <script src="data.js?v=1732867408278"></script>
+    <script src="storage.js?v=1732867408278"></script>
+    <script src="book-texts.js?v=1732867408278"></script>
+    <script src="app.js?v=1732867408278"></script>
+
+    <script>
+        // Ждем загрузки всех данных перед инициализацией
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkAppData = () => {
+                if (window.APP_DATA && window.APP_DATA.MOCK_BOOKS && window.STORAGE) {
+                    initializeApp();
+                } else {
+                    setTimeout(checkAppData, 50);
+                }
+            };
+            checkAppData();
+        });
+    </script>
+</body>
+</html>

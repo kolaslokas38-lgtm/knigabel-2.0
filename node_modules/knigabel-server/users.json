@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "telegramId": "demo_user",
+    "name": "Демо Пользователь",
+    "avatar": "👤",
+    "role": "Активный пользователь",
+    "level": 1,
+    "experience": 0,
+    "coins": 0,
+    "registrationDate": "2025-01-01",
+    "stats": {
+      "totalBooks": 0,
+      "activeBorrows": 0,
+      "totalRead": 0,
+      "readingDays": 0,
+      "reviewsWritten": 0
+    }
+  }
+]
